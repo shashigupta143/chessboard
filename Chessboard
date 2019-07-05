@@ -1,0 +1,38 @@
+import sys, codecs
+sys.stdout = codecs.getwriter('utf_16')(sys.stdout.buffer, 'strict')
+
+import numpy as np
+x=np.ones(64)
+y=x.reshape(8,8)
+
+for i in range(0,8):
+    for j in range(0,8):
+        if(i+j)%2==0:
+            y[i][j]=0
+
+board = {0: 8419, 1:11035, 9: 9813}
+
+for i in y:
+    for j in i:
+        print(chr(board[j]), end='')
+    print()
+print()
+
+print(y)
+print("where u want to place the queen?")
+
+row = int(input())
+column = int(input())
+print('enter row:   ',row,)
+print('enter column:',column)
+print()
+
+if row<8 and column<8:
+    y[row][column]=9
+    print(y)
+else:
+    print("invalid input")
+for i in y:
+    for j in i:
+        print(chr(board[j]), end='')
+    print()
